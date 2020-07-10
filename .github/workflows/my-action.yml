@@ -26,6 +26,13 @@ jobs:
           -O \
           -L ${{ secrets.ENV_REPO_URL }}
 
+      - name: "Lambda Function File"
+        run: |
+          curl -H 'Authorization: token ${{ secrets.ACCESS_TOKEN }}' \
+            -H 'Accept: application/vnd.github.v3.raw' \
+            -O \
+            -L ${{ secrets.LAMBDA_REPO_URL }}
+
       - name: "Terraform Init"
         uses: hashicorp/terraform-github-actions@master
         with:
