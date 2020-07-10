@@ -1,0 +1,65 @@
+{
+  "name": "web",
+  "description": "Härtelö's website",
+  "version": "0.1.0",
+  "author": "Valtteri Kodisto",
+  "dependencies": {
+    "babel-plugin-styled-components": "^1.10.7",
+    "gatsby": "^2.20.12",
+    "gatsby-image": "^2.3.1",
+    "gatsby-plugin-manifest": "^2.3.3",
+    "gatsby-plugin-offline": "^3.1.2",
+    "gatsby-plugin-react-helmet": "^3.2.1",
+    "gatsby-plugin-sharp": "^2.5.3",
+    "gatsby-plugin-styled-components": "^3.2.3",
+    "gatsby-plugin-typescript": "^2.3.1",
+    "gatsby-plugin-web-font-loader": "^1.0.4",
+    "gatsby-source-filesystem": "^2.2.2",
+    "gatsby-source-prismic-graphql": "^3.6.2",
+    "gatsby-transformer-sharp": "^2.4.3",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-helmet": "^5.2.1",
+    "styled-components": "^5.1.0"
+  },
+  "devDependencies": {
+    "@types/react": "^16.9.41",
+    "@types/react-dom": "^16.9.6",
+    "@types/react-helmet": "^5.0.15",
+    "@types/styled-components": "^5.1.0",
+    "dotenv": "^8.2.0",
+    "gatsby-plugin-ts-config": "^0.2.3",
+    "prettier": "^1.19.1",
+    "tslint": "^6.1.1",
+    "tslint-config-prettier": "^1.18.0",
+    "tslint-loader": "^3.5.4",
+    "tslint-plugin-prettier": "^2.3.0",
+    "typescript": "^3.8.3"
+  },
+  "resolutions": {
+    "gatsby-source-graphql-universal": "3.3.0"
+  },
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "MIT",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
+    "fix": "tslint --config tslint.json --project tsconfig.json --fix",
+    "tslint": "tslint --config tslint.json --project tsconfig.json",
+    "lint": "yarn tslint",
+    "start": "npm run develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo 'No tests' && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hartelo/web"
+  },
+  "bugs": {
+    "url": "https://github.com/hartelo/web/issues"
+  }
+}

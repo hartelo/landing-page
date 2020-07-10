@@ -1,0 +1,35 @@
+@font-face {
+  font-family: "Shandon Slab";
+  src: url("shandonslab.woff2") format("woff2"),
+    url("shandonslab.woff") format("woff"),
+    url("shandonslab.ttf") format("truetype"),
+    url("shandonslab.svg") format("svg"),
+    url("shandonslab.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url("rubik-regular.woff2") format("woff2"),
+    url("rubik-regular.woff") format("woff"),
+    url("rubik-regular.ttf") format("truetype"),
+    url("rubik-regular.svg") format("svg"),
+    url("rubik-regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Rubik";
+  src: url("rubik-medium.woff2") format("woff2"),
+    url("rubik-medium.woff") format("woff"),
+    url("rubik-medium.ttf") format("truetype"),
+    url("rubik-medium.svg") format("svg"),
+    url("rubik-medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
