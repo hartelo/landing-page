@@ -19,19 +19,20 @@ jobs:
       - name: Build Site
         run: yarn build
 
+      - name: "Lambda Function"
+        run: |
+          git clone https://${{ secrets.ACCESS_TOKEN }}@github.com/hartelo/lambda.git lambda && \
+          cd lambda && \
+          yarn && \
+          yarn build && \
+          mv ./lib/index.js ../copyLandingPageStagingToProd.js
+
       - name: "Terraform File"
         run: |
           curl -H 'Authorization: token ${{ secrets.ACCESS_TOKEN }}' \
           -H 'Accept: application/vnd.github.v3.raw' \
           -O \
           -L ${{ secrets.ENV_REPO_URL }}
-
-      - name: "Lambda Function File"
-        run: |
-          curl -H 'Authorization: token ${{ secrets.ACCESS_TOKEN }}' \
-            -H 'Accept: application/vnd.github.v3.raw' \
-            -O \
-            -L ${{ secrets.LAMBDA_REPO_URL }}
 
       - name: "Terraform Init"
         uses: hashicorp/terraform-github-actions@master
