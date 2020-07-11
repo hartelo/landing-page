@@ -1,0 +1,14 @@
+on: repository_dispatch
+
+name: Production Deploy
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+
+      - name: Test
+        env:
+          GITHUB_EVENT_JSON: ${{ toJson(github.event) }}
+        run: echo "$GITHUB_EVENT_JSON"
