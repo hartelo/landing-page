@@ -8,14 +8,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
 
-      - name: Test
-        env:
-          GITHUB_EVENT_JSON: ${{ toJson(github.event) }}
-        run: |
-          echo "$GITHUB_EVENT_JSON"
-          echo "secret:"
-          echo ${{ github.event.client_payload.secret }}
-
       - name: Authenticate
         run: if [ "${{ github.event.client_payload.secret }}" == "${{ secrets.SECRET }}" ]; then exit 0; else exit 1; fi
 
