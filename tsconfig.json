@@ -14,7 +14,8 @@
     "newLine": "lf",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
-    "allowJs": true
+    "allowJs": true,
+    "esModuleInterop": true
   },
   "include": ["./src/**/*"]
 }

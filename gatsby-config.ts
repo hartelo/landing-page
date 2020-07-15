@@ -1,4 +1,4 @@
-import { defaultLanguage, langs, prismicRepo } from "./prismic-config"
+import { defaultLanguage, langs, pages, prismicRepo } from "./prismic-config"
 
 export default {
   siteMetadata: {
@@ -48,15 +48,7 @@ export default {
         path: "/preview",
         previews: true,
         langs,
-        pages: [
-          {
-            type: "Homepage",
-            match: "/:lang?",
-            path: "/:lang?",
-            component: require.resolve("./src/templates/Homepage.tsx"),
-            langs,
-          },
-        ],
+        pages,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
