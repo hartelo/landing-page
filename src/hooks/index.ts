@@ -1,0 +1,1 @@
+export { useLangRedirect } from "./useLangRedirect"

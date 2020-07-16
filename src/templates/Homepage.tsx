@@ -2,14 +2,17 @@ import { graphql } from "gatsby"
 import { RichText } from "prismic-reactjs"
 import * as React from "react"
 import SEO from "../components/common/SEO"
+import { useLangRedirect } from "../hooks"
 
 const Homepage: React.SFC<{ data: Data }> = ({ data }) => {
+  useLangRedirect()
   const lang = data.prismic.allHomepages.edges[0].node._meta.lang
   const {
     color,
     description,
     name,
   } = data.prismic.allHomepages.edges[0].node.body[0].primary
+
   return (
     <>
       <SEO
