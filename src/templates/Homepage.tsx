@@ -1,20 +1,18 @@
 import { graphql } from "gatsby"
 import { RichText } from "prismic-reactjs"
-import * as React from "react"
+import React from "react"
 import SEO from "../components/common/SEO"
-import { useLangRedirect } from "../hooks"
+import { PageLayout } from "../components/PageLayout"
 
 const Homepage: React.SFC<{ data: Data }> = ({ data }) => {
-  useLangRedirect()
   const lang = data.prismic.allHomepages.edges[0].node._meta.lang
   const {
     color,
     description,
     name,
   } = data.prismic.allHomepages.edges[0].node.body[0].primary
-
   return (
-    <>
+    <PageLayout>
       <SEO
         lang={data.prismic.allHomepages.edges[0].node._meta.lang}
         title={"Homepage"}
@@ -25,11 +23,10 @@ const Homepage: React.SFC<{ data: Data }> = ({ data }) => {
         }}
       >
         <p>Language is {lang}</p>
-        <p>{JSON.stringify(name)}</p>
-        <p>{JSON.stringify(description)}</p>
         <RichText render={name} />
+        <RichText render={description} />
       </div>
-    </>
+    </PageLayout>
   )
 }
 

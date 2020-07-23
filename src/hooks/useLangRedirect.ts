@@ -1,44 +1,59 @@
 import { navigate } from "gatsby"
-import { useEffect } from "react"
-import { defaultLanguage, langs } from "../../prismic-config"
+import { useEffect, useState } from "react"
+import { defaultLanguage, languages, Languages } from "../../prismic-config"
 
 const languageItemKey = "preferredLanguage" as const
 
 export function useLangRedirect() {
+  const [reloadTrigger, reload] = useState(false)
+
   useEffect(() => {
     const { languageFromPath, pathWithoutLanguage } = removeLanguageFromPath(
       location.pathname ?? "/"
     )
 
-    const preferredLanguage =
-      localStorage.getItem(languageItemKey) ||
-      navigator.language.toLocaleLowerCase() ||
-      defaultLanguage
+    const language =
+      (localStorage.getItem(languageItemKey) as Languages) ?? defaultLanguage
 
-    const preferredSupportedLanguage = preferredLanguageToSupportedLanguage(
-      preferredLanguage
-    )
-
-    if (
-      languageFromPath === defaultLanguage &&
-      preferredSupportedLanguage !== defaultLanguage
-    ) {
+    if (language !== languageFromPath) {
+      const url =
+        language === defaultLanguage
+          ? pathWithoutLanguage
+          : `/${language}${
+              pathWithoutLanguage === "/" ? "" : pathWithoutLanguage
+            }`
       // tslint:disable-next-line: no-floating-promises
-      navigate(`/${preferredSupportedLanguage}${pathWithoutLanguage ?? "/"}`)
-      return
+      navigate(url)
     }
-  }, [])
+  }, [reloadTrigger])
+
+  return {
+    reload: (lang: Languages) => {
+      localStorage.setItem(languageItemKey, lang)
+      reload(x => !x)
+    },
+  }
+}
+
+export function getPreferredSupportedLanguage() {
+  const preferredLanguage =
+    localStorage.getItem(languageItemKey) ||
+    navigator.language.toLocaleLowerCase() ||
+    defaultLanguage
+
+  return preferredLanguageToSupportedLanguage(preferredLanguage)
 }
 
 function preferredLanguageToSupportedLanguage(preferredLanguage: string) {
   return (
-    langs.find(lang => lang.substr(0, 2) === preferredLanguage.substr(0, 2)) ??
-    defaultLanguage
+    languages.find(
+      lang => lang.substr(0, 2) === preferredLanguage.substr(0, 2)
+    ) ?? defaultLanguage
   )
 }
 
 function removeLanguageFromPath(path: string) {
-  for (const lang of langs) {
+  for (const lang of languages) {
     const regex = new RegExp(`^/${lang}(\/|$)`)
 
     if (regex.test(path)) {
