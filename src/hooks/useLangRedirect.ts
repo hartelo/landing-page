@@ -2,7 +2,7 @@ import { navigate } from "gatsby"
 import { useEffect, useState } from "react"
 import { defaultLanguage, languages, Languages } from "../../prismic-config"
 
-const languageItemKey = "preferredLanguage" as const
+export const languageItemKey = "preferredLanguage" as const
 
 export function useLangRedirect() {
   const [reloadTrigger, reload] = useState(false)

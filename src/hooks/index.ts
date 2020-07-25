@@ -1,1 +1,1 @@
-export { useLangRedirect } from "./useLangRedirect"
+export { useLangRedirect, languageItemKey } from "./useLangRedirect"
