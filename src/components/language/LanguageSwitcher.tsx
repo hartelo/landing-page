@@ -42,7 +42,7 @@ export const LanguageSwitcher: React.FC = () => {
   }, [currentLanguage, reload])
 
   return (
-    <div>
+    <>
       <CurrentLanguage onClick={() => setIsOpen(open => !open)}>
         {languageMap(currentLanguage)}
       </CurrentLanguage>
@@ -53,7 +53,7 @@ export const LanguageSwitcher: React.FC = () => {
       >
         {languageOptions}
       </LanguageOptionList>
-    </div>
+    </>
   )
 }
 

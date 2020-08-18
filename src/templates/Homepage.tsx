@@ -20,6 +20,7 @@ const Homepage: React.SFC<{ data: Data }> = ({ data }) => {
       <div
         style={{
           backgroundColor: color,
+          paddingTop: 100,
         }}
       >
         <p>Language is {lang}</p>
