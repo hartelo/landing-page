@@ -5,7 +5,10 @@ import { defaultLanguage, languages, Languages } from "../../prismic-config"
 export const languageItemKey = "preferredLanguage" as const
 
 export function useLangRedirect() {
-  const [reloadTrigger, reload] = useState(false)
+  const [reloadTrigger, reload] = useState(0)
+  const [currentLanguage] = useState<Languages>(
+    (localStorage.getItem(languageItemKey) as Languages) ?? defaultLanguage
+  )
 
   useEffect(() => {
     const { languageFromPath, pathWithoutLanguage } = removeLanguageFromPath(
@@ -21,7 +24,7 @@ export function useLangRedirect() {
           ? pathWithoutLanguage
           : `/${language}${
               pathWithoutLanguage === "/" ? "" : pathWithoutLanguage
-            }`
+            }/`
       // tslint:disable-next-line: no-floating-promises
       navigate(url)
     }
@@ -30,8 +33,9 @@ export function useLangRedirect() {
   return {
     reload: (lang: Languages) => {
       localStorage.setItem(languageItemKey, lang)
-      reload(x => !x)
+      reload(x => x + 1)
     },
+    currentLanguage,
   }
 }
 

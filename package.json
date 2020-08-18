@@ -5,6 +5,7 @@
   "author": "Valtteri Kodisto",
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.7",
+    "framer-motion": "^2.1.4",
     "gatsby": "^2.20.12",
     "gatsby-image": "^2.3.1",
     "gatsby-plugin-manifest": "^2.3.3",
@@ -46,12 +47,12 @@
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
-    "develop": "gatsby develop",
+    "dev": "gatsby develop",
     "format": "prettier --write \"**/*.{js,jsx,json,md}\"",
     "fix": "tslint --config tslint.json --project tsconfig.json --fix",
     "tslint": "tslint --config tslint.json --project tsconfig.json",
     "lint": "yarn tslint",
-    "start": "npm run develop",
+    "start": "npm run dev",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
     "test": "echo 'No tests' && exit 1"

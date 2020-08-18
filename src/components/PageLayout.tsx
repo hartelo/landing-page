@@ -1,7 +1,7 @@
 import React, { memo } from "react"
 import { Helmet } from "react-helmet"
 import { GlobalStyle } from "./globalStyles"
-import { LanguageSwitcher } from "./language/LanguageSwitcher"
+import { Navigation } from "./Navigation"
 
 export interface LayoutProps {
   children: React.ReactNode
@@ -13,7 +13,7 @@ export const PageLayout: React.SFC<LayoutProps> = ({ children }) => {
       <PrismicTags />
       <FontTags />
       <GlobalStyle />
-      <LanguageSwitcher />
+      <Navigation />
       {children}
     </>
   )
