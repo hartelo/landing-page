@@ -18,7 +18,9 @@ const languageMap = (language: Languages): string => {
   }
 }
 
-export const LanguageSwitcher: React.FC = () => {
+export const LanguageSwitcher: React.FC<{ isDesktop?: boolean }> = ({
+  isDesktop,
+}) => {
   const [isOpen, setIsOpen] = useState<boolean | null>(null)
   const { reload, currentLanguage } = useLangRedirect()
 
@@ -30,7 +32,7 @@ export const LanguageSwitcher: React.FC = () => {
           .map(lang => (
             <LanguageOption
               key={lang}
-              variants={listItemVariants}
+              variants={listItemVariants(!!isDesktop)}
               initial={false}
               onClick={() => reload(lang)}
             >
@@ -66,7 +68,7 @@ const listVariants: Variants = {
   },
 }
 
-const listItemVariants: Variants = {
+const listItemVariants = (isDesktop: boolean): Variants => ({
   open: {
     x: 0,
     opacity: 1,
@@ -75,13 +77,13 @@ const listItemVariants: Variants = {
     },
   },
   closed: {
-    x: 50,
+    x: isDesktop ? -50 : 50,
     opacity: 0,
     transition: {
       x: { stiffness: 1000 },
     },
   },
-}
+})
 
 const CurrentLanguage = styled.button`
   background: none;
@@ -112,4 +114,5 @@ const LanguageOptionList = styled(motion.ul)`
   padding: 0;
   margin: 0;
   list-style-type: none;
+  text-align: center;
 `
