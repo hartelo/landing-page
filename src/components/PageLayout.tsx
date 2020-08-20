@@ -1,7 +1,7 @@
 import React, { memo } from "react"
 import { Helmet } from "react-helmet"
 import { GlobalStyle } from "./globalStyles"
-import { Navigation } from "./Navigation"
+import { Navigation } from "./navigation/Navigation"
 
 export interface LayoutProps {
   children: React.ReactNode

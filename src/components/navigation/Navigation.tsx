@@ -1,7 +1,9 @@
 import { motion } from "framer-motion"
 import React, { useState } from "react"
 import styled from "styled-components"
-import { LanguageSwitcher } from "./language/LanguageSwitcher"
+import HamburgerMenuSVG from "../../assets/hamburger-menu.svg"
+import IconSVG from "../../assets/icon.svg"
+import { LanguageSwitcher } from "./LanguageSwitcher"
 
 export const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false)
@@ -9,18 +11,19 @@ export const Navigation = () => {
   return (
     <NavigationContainer>
       <NavigationHalfContainer>
-        <p>ICON</p>
+        <Icon />
       </NavigationHalfContainer>
       <NavigationHalfContainer right>
         <MenuAreaContainer>
           <MenuButtonContainer>
-            <div
+            <HamburgerMenu />
+            {/* <div
               style={{
                 backgroundColor: "black",
                 height: 40,
                 width: 40,
               }}
-            ></div>
+            ></div> */}
           </MenuButtonContainer>
           <LanguageSwitcherContainer>
             <LanguageSwitcher />
@@ -55,11 +58,10 @@ const NavigationHalfContainer = styled.div`
 const MenuAreaContainer = styled.div`
   display: flex;
   flex-direction: column;
+  margin-right: 1.5rem;
 `
 
-const MenuButtonContainer = styled.div`
-  padding: 10px;
-`
+const MenuButtonContainer = styled.div``
 
 const LanguageSwitcherContainer = styled.div`
   height: 0px;
@@ -71,4 +73,14 @@ const LanguageSwitcherContainer = styled.div`
   & > li {
     width: 100%;
   }
+`
+
+const Icon = styled(IconSVG)`
+  margin-top: 0.5rem;
+  margin-left: 1rem;
+  height: 75%;
+`
+
+const HamburgerMenu = styled(HamburgerMenuSVG)`
+  height: 2.1rem;
 `
