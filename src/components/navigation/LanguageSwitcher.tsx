@@ -94,6 +94,7 @@ const CurrentLanguage = styled.button`
 
   font-size: 1.2rem;
   font-weight: 600;
+  color: #ffffff;
 
   cursor: pointer;
 
@@ -106,6 +107,7 @@ const CurrentLanguage = styled.button`
 const LanguageOption = styled(motion.li)`
   padding: 0.35rem 0;
   font-size: 1.2;
+  color: #ffffff;
 
   cursor: pointer;
 `

@@ -1,8 +1,8 @@
 import { motion, Variants } from "framer-motion"
 import React from "react"
 import styled from "styled-components"
-import HamburgerMenuSVG from "../../assets/hamburger-menu.svg"
 import IconSVG from "../../assets/icon.svg"
+import { HamburgerMenu } from "./HamburgerMenu"
 import { LanguageSwitcher } from "./LanguageSwitcher"
 
 export interface MobileNavigationProps {
@@ -24,9 +24,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
       <NavigationHalfContainer right>
         <OverlayMenu />
         <MenuAreaContainer>
-          <MenuButtonContainer onClick={() => setIsOpen(o => !o)}>
-            <HamburgerMenu />
-          </MenuButtonContainer>
+          <HamburgerMenu handleClick={() => setIsOpen(o => !o)} />
           <LanguageSwitcherContainer>
             <LanguageSwitcher />
           </LanguageSwitcherContainer>
@@ -40,7 +38,7 @@ const menu: Variants = {
   open: {
     position: "absolute",
     opacity: 1,
-    backgroundColor: "#52926C",
+    backgroundColor: "#E89FC0",
     width: "100vw",
     height: "100vh",
     transition: {
@@ -51,7 +49,7 @@ const menu: Variants = {
   closed: {
     position: "absolute",
     opacity: 1,
-    backgroundColor: "#52926C",
+    backgroundColor: "#E89FC0",
     width: 0,
     height: "100vh",
     top: 0,
@@ -81,7 +79,7 @@ const OverlayMenu: React.FC = () => {
             transition: { staggerChildren: 0.05, delayChildren: 0.3 },
           },
           closed: {
-            transition: { staggerChildren: 0.05, staggerDirection: -1 },
+            transition: { staggerChildren: 0.035, staggerDirection: -1 },
           },
         }}
       >
@@ -120,9 +118,8 @@ const MenuAreaContainer = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 1.5rem;
+  z-index: 100;
 `
-
-const MenuButtonContainer = styled.div``
 
 const LanguageSwitcherContainer = styled.div`
   height: 0px;
@@ -144,17 +141,14 @@ const Icon = styled(IconSVG)`
   height: 75%;
 `
 
-const HamburgerMenu = styled(HamburgerMenuSVG)`
-  height: 2.1rem;
-`
-
 const MenuContainer = styled(motion.div)`
   position: "absolute";
   opacity: 1;
-  background-color: "#52926C";
+  background-color: "#E89FC0";
   width: 0;
   height: "100vh";
   top: 0;
+  z-index: 99;
 `
 
 const MenuItemContainer = styled(motion.ul)`
@@ -177,4 +171,5 @@ const MenuItem = styled(motion.li)`
 
   font-size: 2rem;
   font-family: Shandon Slab;
+  color: #ffffff;
 `
