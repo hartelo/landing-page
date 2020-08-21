@@ -1,21 +1,28 @@
 import { motion, Variants } from "framer-motion"
-import React, { useState } from "react"
+import React from "react"
 import styled from "styled-components"
 import HamburgerMenuSVG from "../../assets/hamburger-menu.svg"
 import IconSVG from "../../assets/icon.svg"
 import { LanguageSwitcher } from "./LanguageSwitcher"
 
-export const MobileNavigation: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false)
+export interface MobileNavigationProps {
+  isOpen: boolean
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+export const MobileNavigation: React.FC<MobileNavigationProps> = ({
+  isOpen,
+  setIsOpen,
+}) => {
   return (
-    <NavigationContainer>
+    <NavigationContainer animate={isOpen ? "open" : "closed"}>
       <NavigationHalfContainer>
         <IconWrapper layoutId="icon">
           <Icon />
         </IconWrapper>
       </NavigationHalfContainer>
       <NavigationHalfContainer right>
-        <Menu isOpen={isOpen} />
+        <OverlayMenu />
         <MenuAreaContainer>
           <MenuButtonContainer onClick={() => setIsOpen(o => !o)}>
             <HamburgerMenu />
@@ -36,6 +43,10 @@ const menu: Variants = {
     backgroundColor: "#52926C",
     width: "100vw",
     height: "100vh",
+    transition: {
+      ease: [0.51, 0, 0.34, 1],
+      duration: 0.4,
+    },
   },
   closed: {
     position: "absolute",
@@ -44,17 +55,43 @@ const menu: Variants = {
     width: 0,
     height: "100vh",
     top: 0,
+    transition: {
+      ease: [0.51, 0, 0.34, 1],
+      duration: 0.4,
+      delay: 0.35,
+    },
   },
 }
 
-const Menu: React.FC<{ isOpen: boolean }> = ({ isOpen }) => {
+const menuItem: Variants = {
+  open: {
+    opacity: 1,
+  },
+  closed: {
+    opacity: 0,
+  },
+}
+
+const OverlayMenu: React.FC = () => {
   return (
-    <motion.div
-      animate={isOpen ? "open" : "closed"}
-      variants={menu}
-      transition={{ ease: [0.51, 0, 0.34, 1], duration: 0.4 }}
-      initial={false}
-    ></motion.div>
+    <MenuContainer variants={menu}>
+      <MenuItemContainer
+        variants={{
+          open: {
+            transition: { staggerChildren: 0.05, delayChildren: 0.3 },
+          },
+          closed: {
+            transition: { staggerChildren: 0.05, staggerDirection: -1 },
+          },
+        }}
+      >
+        {["Home", "Härtelö's", "Our Story", "Contact us"].map(i => (
+          <MenuItem key={i} variants={menuItem}>
+            {i}
+          </MenuItem>
+        ))}
+      </MenuItemContainer>
+    </MenuContainer>
   )
 }
 
@@ -109,4 +146,35 @@ const Icon = styled(IconSVG)`
 
 const HamburgerMenu = styled(HamburgerMenuSVG)`
   height: 2.1rem;
+`
+
+const MenuContainer = styled(motion.div)`
+  position: "absolute";
+  opacity: 1;
+  background-color: "#52926C";
+  width: 0;
+  height: "100vh";
+  top: 0;
+`
+
+const MenuItemContainer = styled(motion.ul)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  height: 100%;
+  width: 100%;
+
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+`
+
+const MenuItem = styled(motion.li)`
+  opacity: 0;
+  margin: 1rem 0;
+
+  font-size: 2rem;
+  font-family: Shandon Slab;
 `

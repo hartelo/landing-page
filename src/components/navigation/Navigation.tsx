@@ -20,7 +20,7 @@ export const Navigation = () => {
         <DesktopNavigation />
       </Desktop>
       <TabletOrMobile>
-        <MobileNavigation />
+        <MobileNavigation isOpen={isOpen} setIsOpen={setIsOpen} />
       </TabletOrMobile>
     </>
   )
