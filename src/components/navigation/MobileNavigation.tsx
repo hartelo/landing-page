@@ -4,6 +4,7 @@ import styled from "styled-components"
 import IconSVG from "../../assets/icon.svg"
 import { HamburgerMenu } from "./HamburgerMenu"
 import { LanguageSwitcher } from "./LanguageSwitcher"
+import { SocialMedia } from "./SocialMedia"
 
 export interface MobileNavigationProps {
   isOpen: boolean
@@ -73,6 +74,7 @@ const menuItem: Variants = {
 const OverlayMenu: React.FC = () => {
   return (
     <MenuContainer variants={menu}>
+      <SocialMedia />
       <MenuItemContainer
         variants={{
           open: {
