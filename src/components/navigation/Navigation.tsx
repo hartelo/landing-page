@@ -10,6 +10,9 @@ import { DesktopNavigation } from "./DesktopNavigation"
 import { MobileNavigation } from "./MobileNavigation"
 
 export const Navigation = () => {
+  // Get these from prismic
+  const MENU_ITEMS = ["Home", "Härtelö's", "Our Story", "Contact us"]
+
   const [isOpen, setIsOpen] = useState(false)
   const isDesktop = useMediaQuery(DESKTOP_LIMIT)
   const isTabletOrMobile = useMediaQuery(TABLET_OR_MOBILE_LIMIT)
@@ -17,10 +20,14 @@ export const Navigation = () => {
   return (
     <>
       <Desktop>
-        <DesktopNavigation />
+        <DesktopNavigation menuItems={MENU_ITEMS} />
       </Desktop>
       <TabletOrMobile>
-        <MobileNavigation isOpen={isOpen} setIsOpen={setIsOpen} />
+        <MobileNavigation
+          menuItems={MENU_ITEMS}
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+        />
       </TabletOrMobile>
     </>
   )

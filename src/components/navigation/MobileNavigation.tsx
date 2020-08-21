@@ -7,11 +7,13 @@ import { LanguageSwitcher } from "./LanguageSwitcher"
 import { SocialMedia } from "./SocialMedia"
 
 export interface MobileNavigationProps {
+  menuItems: string[]
   isOpen: boolean
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 export const MobileNavigation: React.FC<MobileNavigationProps> = ({
+  menuItems,
   isOpen,
   setIsOpen,
 }) => {
@@ -23,7 +25,7 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
         </IconWrapper>
       </NavigationHalfContainer>
       <NavigationHalfContainer right>
-        <OverlayMenu />
+        <OverlayMenu menuItems={menuItems} />
         <MenuAreaContainer>
           <HamburgerMenu handleClick={() => setIsOpen(o => !o)} />
           <LanguageSwitcherContainer>
@@ -71,7 +73,11 @@ const menuItem: Variants = {
   },
 }
 
-const OverlayMenu: React.FC = () => {
+interface OverlayMenuProps {
+  menuItems: string[]
+}
+
+const OverlayMenu: React.FC<OverlayMenuProps> = ({ menuItems }) => {
   return (
     <MenuContainer variants={menu}>
       <SocialMedia />
@@ -85,7 +91,7 @@ const OverlayMenu: React.FC = () => {
           },
         }}
       >
-        {["Home", "Härtelö's", "Our Story", "Contact us"].map(i => (
+        {menuItems.map(i => (
           <MenuItem key={i} variants={menuItem}>
             {i}
           </MenuItem>

@@ -10,6 +10,7 @@ const socialMedia: Variants = {
     y: 0,
     transition: {
       y: { stiffness: 1000, velocity: -100 },
+      ease: [0.51, 0, 0.34, 1],
       delay: 0.3,
     },
   },
@@ -18,13 +19,23 @@ const socialMedia: Variants = {
     y: "7rem",
     transition: {
       y: { stiffness: 10, duration: 0.5 },
+      ease: [0.51, 0, 0.34, 1],
     },
   },
 }
-export const SocialMedia: React.FC = () => {
+
+interface SocialMediaProps {
+  isDesktop?: boolean
+}
+
+export const SocialMedia: React.FC<SocialMediaProps> = ({ isDesktop }) => {
   return (
-    <SocialMediaContainer variants={socialMedia} initial={{ opacity: 0 }}>
-      <SocialMediaRow>
+    <SocialMediaContainer
+      isDesktop={isDesktop}
+      variants={socialMedia}
+      initial={{ opacity: isDesktop ? 1 : 0 }}
+    >
+      <SocialMediaRow isDesktop={isDesktop}>
         <a
           href="https://facebook.com/hartelocompany"
           target="_blank"
@@ -45,9 +56,16 @@ export const SocialMedia: React.FC = () => {
 }
 
 const SocialMediaContainer = styled(motion.div)`
-  position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
+  ${(props: SocialMediaProps) =>
+    props.isDesktop
+      ? `
+        margin-bottom: 1rem;
+      `
+      : `
+        position: absolute;
+        bottom: 2.5rem;
+        left: 50%;
+    `}
 `
 
 const SocialMediaRow = styled.div`
@@ -56,15 +74,32 @@ const SocialMediaRow = styled.div`
   align-items: center;
   left: -50%;
   height: 10vh;
+
   & > * {
     margin: 0 0.8rem;
   }
+
+  ${(props: SocialMediaProps) =>
+    props.isDesktop
+      ? `
+    flex-direction: column-reverse;
+    position: static;
+    left: 0;
+    height: auto;
+
+    & > * {
+      margin: 0.8rem 0;
+    }
+  `
+      : ""};
 `
 
 const FacebookIcon = styled(FacebookIconSVG)`
   width: 2rem;
+  height: 2rem;
 `
 
 const InstagramIcon = styled(InstagramIconSVG)`
   width: 2rem;
+  height: 2rem;
 `

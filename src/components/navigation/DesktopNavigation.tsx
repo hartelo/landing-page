@@ -3,8 +3,15 @@ import React from "react"
 import styled from "styled-components"
 import IconSVG from "../../assets/icon.svg"
 import { LanguageSwitcher } from "./LanguageSwitcher"
+import { SocialMedia } from "./SocialMedia"
 
-export const DesktopNavigation: React.FC = () => (
+export interface DesktopNavigationProps {
+  menuItems: string[]
+}
+
+export const DesktopNavigation: React.FC<DesktopNavigationProps> = ({
+  menuItems,
+}) => (
   <NavigationContainer>
     <NavigationHalfContainer>
       <motion.div layoutId="icon">
@@ -17,7 +24,7 @@ export const DesktopNavigation: React.FC = () => (
       <Square />
     </NavigationHalfContainer>
     <NavigationHalfContainer down>
-      <Square />
+      <SocialMedia isDesktop={true} />
     </NavigationHalfContainer>
   </NavigationContainer>
 )
