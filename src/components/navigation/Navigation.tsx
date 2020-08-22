@@ -11,7 +11,12 @@ import { MobileNavigation } from "./MobileNavigation"
 
 export const Navigation = () => {
   // Get these from prismic
-  const MENU_ITEMS = ["Home", "Härtelö's", "Our Story", "Contact us"]
+  const MENU_ITEMS = [
+    "Home",
+    "Härtelö's",
+    `Our${"\u00a0"}Story`,
+    `Contact${"\u00a0"}us`,
+  ]
 
   const [isOpen, setIsOpen] = useState(false)
   const isDesktop = useMediaQuery(DESKTOP_LIMIT)
