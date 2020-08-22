@@ -1,20 +1,25 @@
 import React, { memo } from "react"
 import { Helmet } from "react-helmet"
+import { useMediaQuery } from "react-responsive"
+import styled from "styled-components"
 import { GlobalStyle } from "./globalStyles"
 import { Navigation } from "./navigation/Navigation"
+import { DESKTOP_LIMIT } from "./responsive"
 
 export interface LayoutProps {
   children: React.ReactNode
 }
 
 export const PageLayout: React.SFC<LayoutProps> = ({ children }) => {
+  const isDesktop = useMediaQuery(DESKTOP_LIMIT)
+
   return (
     <>
       <PrismicTags />
       <FontTags />
       <GlobalStyle />
       <Navigation />
-      {children}
+      <Main isDesktop={isDesktop}>{children}</Main>
     </>
   )
 }
@@ -56,3 +61,10 @@ const FontTags = memo(() => (
     ></link>
   </Helmet>
 ))
+
+const Main = styled.main`
+  & > * {
+    ${(props: { isDesktop: boolean }) =>
+      props.isDesktop ? `padding-left: 5rem` : `padding-top: 4rem;`}
+  }
+`

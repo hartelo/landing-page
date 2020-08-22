@@ -1,4 +1,4 @@
-import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 import React, { useState } from "react"
 import styled from "styled-components"
 import IconSVG from "../../assets/icon.svg"
@@ -55,7 +55,7 @@ const ProgressMenu: React.FC<ProgressMenuProps> = ({ menuItems }) => {
                 />
               )}
             </AnimatePresence>
-            <MenuItem>{item}</MenuItem>
+            <MenuItem isSelected={id === selected}>{item}</MenuItem>
           </MenuItemContainer>
         )
       })}
@@ -81,8 +81,6 @@ const NavigationHalfContainer = styled.div`
   align-items: center;
   justify-content: ${(props: { down?: boolean }) =>
     props.down ? "flex-end" : "flex-start"};
-
-  background-color: #efefefef;
 
   width: 100%;
   height: ${(props: { down?: boolean }) => (props.down ? "auto" : "100%")};
@@ -121,7 +119,8 @@ const MenuItemContainer = styled(motion.div)`
 const MenuItem = styled(motion.a)`
   font-family: Rubik;
   font-weight: bold;
-  color: #e89fc0;
+  color: ${(props: { isSelected: boolean }) =>
+    props.isSelected ? `#52926c` : `#e89fc0`};
 `
 
 const MenuItemSelection = styled(motion.div)`
