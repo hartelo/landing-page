@@ -1,35 +1,35 @@
 import React, { useState } from "react"
-import { useMediaQuery } from "react-responsive"
-import {
-  Desktop,
-  DESKTOP_LIMIT,
-  TabletOrMobile,
-  TABLET_OR_MOBILE_LIMIT,
-} from "../responsive"
+import { Desktop, TabletOrMobile } from "../responsive"
 import { DesktopNavigation } from "./DesktopNavigation"
 import { MobileNavigation } from "./MobileNavigation"
 
-export const Navigation = () => {
-  // Get these from prismic
-  const MENU_ITEMS = [
-    "Home",
-    "Härtelö's",
-    `Our${"\u00a0"}Story`,
-    `Contact${"\u00a0"}us`,
-  ]
+export interface NavigationProps {
+  home: string
+  hartelos: string
+  aboutUs: string
+  contactUs: string
+}
+
+export const Navigation: React.FC<NavigationProps> = ({
+  home,
+  hartelos,
+  aboutUs,
+  contactUs,
+}) => {
+  const menuItems = [home, hartelos, aboutUs, contactUs].map(
+    replaceSpaceWithNonBreakingSpace
+  )
 
   const [isOpen, setIsOpen] = useState(false)
-  const isDesktop = useMediaQuery(DESKTOP_LIMIT)
-  const isTabletOrMobile = useMediaQuery(TABLET_OR_MOBILE_LIMIT)
 
   return (
     <>
       <Desktop>
-        <DesktopNavigation menuItems={MENU_ITEMS} />
+        <DesktopNavigation menuItems={menuItems} />
       </Desktop>
       <TabletOrMobile>
         <MobileNavigation
-          menuItems={MENU_ITEMS}
+          menuItems={menuItems}
           isOpen={isOpen}
           setIsOpen={setIsOpen}
         />
@@ -37,3 +37,6 @@ export const Navigation = () => {
     </>
   )
 }
+
+const replaceSpaceWithNonBreakingSpace = (str: string) =>
+  str.replace(/\s+/gi, "\u00a0")

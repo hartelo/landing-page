@@ -3,14 +3,15 @@ import { Helmet } from "react-helmet"
 import { useMediaQuery } from "react-responsive"
 import styled from "styled-components"
 import { GlobalStyle } from "./globalStyles"
-import { Navigation } from "./navigation/Navigation"
+import { Navigation, NavigationProps } from "./navigation/Navigation"
 import { DESKTOP_LIMIT } from "./responsive"
 
 export interface LayoutProps {
   children: React.ReactNode
+  menuItems: NavigationProps
 }
 
-export const PageLayout: React.SFC<LayoutProps> = ({ children }) => {
+export const PageLayout: React.SFC<LayoutProps> = ({ children, menuItems }) => {
   const isDesktop = useMediaQuery(DESKTOP_LIMIT)
 
   return (
@@ -18,7 +19,7 @@ export const PageLayout: React.SFC<LayoutProps> = ({ children }) => {
       <PrismicTags />
       <FontTags />
       <GlobalStyle />
-      <Navigation />
+      <Navigation {...menuItems} />
       <Main isDesktop={isDesktop}>{children}</Main>
     </>
   )
