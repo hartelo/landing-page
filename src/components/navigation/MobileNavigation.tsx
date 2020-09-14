@@ -42,6 +42,7 @@ const menu: Variants = {
     position: "absolute",
     opacity: 1,
     backgroundColor: "#E89FC0",
+    transform: "translateX(0vw)",
     width: "100vw",
     height: "100vh",
     transition: {
@@ -53,7 +54,8 @@ const menu: Variants = {
     position: "absolute",
     opacity: 1,
     backgroundColor: "#E89FC0",
-    width: 0,
+    transform: "translateX(100vw)",
+    width: "100vw",
     height: "100vh",
     top: 0,
     transition: {
@@ -153,7 +155,8 @@ const MenuContainer = styled(motion.div)`
   position: "absolute";
   opacity: 1;
   background-color: "#E89FC0";
-  width: 0;
+  transform: translateX(100vw);
+  width: "100vw";
   height: "100vh";
   top: 0;
   z-index: 99;
