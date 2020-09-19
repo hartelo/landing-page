@@ -39,25 +39,14 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
 
 const menu: Variants = {
   open: {
-    position: "absolute",
-    opacity: 1,
-    backgroundColor: "#E89FC0",
     transform: "translateX(0vw)",
-    width: "100vw",
-    height: "100vh",
     transition: {
       ease: [0.51, 0, 0.34, 1],
       duration: 0.4,
     },
   },
   closed: {
-    position: "absolute",
-    opacity: 1,
-    backgroundColor: "#E89FC0",
     transform: "translateX(100vw)",
-    width: "100vw",
-    height: "100vh",
-    top: 0,
     transition: {
       ease: [0.51, 0, 0.34, 1],
       duration: 0.4,
@@ -81,7 +70,7 @@ interface OverlayMenuProps {
 
 const OverlayMenu: React.FC<OverlayMenuProps> = ({ menuItems }) => {
   return (
-    <MenuContainer variants={menu}>
+    <MenuContainer variants={menu} initial={{ transform: "translateX(100vw)" }}>
       <SocialMedia />
       <MenuItemContainer
         variants={{
@@ -112,6 +101,7 @@ const NavigationContainer = styled(motion.nav)`
 
   width: 100%;
   height: 4rem;
+  z-index: 9999;
 `
 
 const NavigationHalfContainer = styled.div`
@@ -152,12 +142,12 @@ const Icon = styled(IconSVG)`
 `
 
 const MenuContainer = styled(motion.div)`
-  position: "absolute";
+  position: absolute;
   opacity: 1;
-  background-color: "#E89FC0";
+  background-color: #e89fc0;
   transform: translateX(100vw);
-  width: "100vw";
-  height: "100vh";
+  width: 100vw;
+  height: 100vh;
   top: 0;
   z-index: 99;
 `

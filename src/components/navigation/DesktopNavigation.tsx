@@ -72,6 +72,7 @@ const NavigationContainer = styled(motion.nav)`
 
   width: 5rem;
   height: 100vh;
+  z-index: 9999;
 `
 
 const NavigationHalfContainer = styled.div`
