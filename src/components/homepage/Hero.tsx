@@ -1,18 +1,23 @@
 import React from "react"
 import styled from "styled-components"
 import LogoSVG from "../../assets/hero-logo.svg"
+import { HeroHandOne } from "../images/HeroHandOne"
 import { DESKTOP_LIMIT, TABLET_LIMIT } from "../responsive"
 
 export const Hero: React.FC = () => {
   return (
     <Section>
       <Logo />
+      <ImageWrapper>
+        <HeroHandOne />
+      </ImageWrapper>
     </Section>
   )
 }
 
 const Section = styled.section`
   height: 100vh;
+  position: relative;
 `
 
 const Logo = styled(LogoSVG)`
@@ -31,4 +36,10 @@ const Logo = styled(LogoSVG)`
     margin: 0 0 0 5vw;
     padding-top: 10vh;
   }
+`
+
+const ImageWrapper = styled.div`
+  position: absolute;
+  bottom: -2%;
+  left: -5%;
 `
