@@ -120,7 +120,7 @@ const MenuItem = styled(motion.a)`
   font-family: Rubik;
   font-weight: bold;
   color: ${(props: { isSelected: boolean }) =>
-    props.isSelected ? `#52926c` : `#e89fc0`};
+    props.isSelected ? `#52926c` : `#ffffff`};
 `
 
 const MenuItemSelection = styled(motion.div)`

@@ -18,7 +18,7 @@ export const PageLayout: React.FC<LayoutProps> = ({
   backgroundColor,
 }) => {
   const isDesktop = useMediaQuery(DESKTOP_LIMIT)
-  const background = backgroundColor ?? "#E89FC0"
+  const background = backgroundColor ?? "#F2CDDE"
 
   return (
     <>
@@ -77,6 +77,6 @@ const Main = styled.main`
 
   & > * {
     ${(props: { isDesktop: boolean; backgroundColor: string }) =>
-      props.isDesktop ? `padding-left: 5rem` : `padding-top: 4rem;`}
+      props.isDesktop ? `padding-left: 5rem` : `padding-top: 0rem;`}
   }
 `

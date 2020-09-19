@@ -2,6 +2,7 @@ import { graphql } from "gatsby"
 import { RichText } from "prismic-reactjs"
 import React from "react"
 import SEO from "../components/common/SEO"
+import { Hero } from "../components/homepage/Hero"
 import { PageLayout } from "../components/PageLayout"
 
 const Homepage: React.FC<{ data: Data }> = ({ data }) => {
@@ -24,11 +25,12 @@ const Homepage: React.FC<{ data: Data }> = ({ data }) => {
         lang={data.prismic.allHomepages.edges[0].node._meta.lang}
         title={"Homepage"}
       />
-      <section className="section1">
+      {/* <section className="section1">
         <p>Language is {lang}</p>
         <RichText render={name} />
         <RichText render={description} />
-      </section>
+      </section> */}
+      <Hero />
     </PageLayout>
   )
 }

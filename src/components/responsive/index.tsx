@@ -15,14 +15,14 @@ interface MediaQueryProps {
   callback?: ((matches: boolean) => void) | undefined
 }
 
-export const DESKTOP_LIMIT = { minWidth: 992 }
-export const TABLET_LIMIT = { minWidth: 768, maxWidth: 991 }
-export const MOBILE_LIMIT = { maxWidth: 767 }
+export const DESKTOP_LIMIT = { minWidth: 1025 }
+export const TABLET_LIMIT = { minWidth: 768, maxWidth: 1024 }
+export const MOBILE_LIMIT = { maxWidth: 767, maxHeight: 815 }
 export const DEFAULT_LIMIT = { minWidth: 768 }
 
 /* Combined Media Queries */
 
-export const TABLET_OR_MOBILE_LIMIT = { maxWidth: 991 }
+export const TABLET_OR_MOBILE_LIMIT = { maxWidth: 1024 }
 
 export const Desktop: React.FC<MediaQueryProps> = ({
   children,
