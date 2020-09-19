@@ -2,12 +2,13 @@ import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 import React from "react"
 import styled from "styled-components"
-import { DESKTOP_LIMIT } from "../responsive"
+// @ts-ignore
+import { DESKTOP_LIMIT, TABLET_LIMIT } from "../responsive"
 
-export const HeroHandOne = () => {
+export const HeroHandTwo = () => {
   const data = useStaticQuery(graphql`
     query {
-      heroHand: file(relativePath: { eq: "hand-1.png" }) {
+      heroHand: file(relativePath: { eq: "hand-2.png" }) {
         childImageSharp {
           fluid(sizes: "(max-width: 1024px) 70vw, 50vw") {
             ...GatsbyImageSharpFluid_withWebp_noBase64

@@ -4,10 +4,10 @@ import React from "react"
 import styled from "styled-components"
 import { DESKTOP_LIMIT } from "../responsive"
 
-export const HeroHandOne = () => {
+export const HeroHandThree = () => {
   const data = useStaticQuery(graphql`
     query {
-      heroHand: file(relativePath: { eq: "hand-1.png" }) {
+      heroHand: file(relativePath: { eq: "hand-3.png" }) {
         childImageSharp {
           fluid(sizes: "(max-width: 1024px) 70vw, 50vw") {
             ...GatsbyImageSharpFluid_withWebp_noBase64
@@ -21,10 +21,10 @@ export const HeroHandOne = () => {
 }
 
 const HeroHand = styled(Img)`
-  width: 50vw;
+  width: 60vw;
 
   @media only screen and (orientation: landscape),
     screen and (min-width: ${DESKTOP_LIMIT.minWidth}px) {
-    width: 50vh;
+    width: 60vh;
   }
 `
