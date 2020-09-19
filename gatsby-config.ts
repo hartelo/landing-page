@@ -46,6 +46,14 @@ export default {
       },
     },
     {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /assets/,
+        },
+      },
+    },
+    {
       resolve: `gatsby-source-prismic-graphql`,
       options: {
         repositoryName: prismicRepo,

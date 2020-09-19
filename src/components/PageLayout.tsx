@@ -1,20 +1,34 @@
 import React, { memo } from "react"
 import { Helmet } from "react-helmet"
+import { useMediaQuery } from "react-responsive"
+import styled from "styled-components"
 import { GlobalStyle } from "./globalStyles"
-import { LanguageSwitcher } from "./language/LanguageSwitcher"
+import { Navigation, NavigationProps } from "./navigation/Navigation"
+import { DESKTOP_LIMIT } from "./responsive"
 
 export interface LayoutProps {
   children: React.ReactNode
+  menuItems: NavigationProps
+  backgroundColor?: string
 }
 
-export const PageLayout: React.SFC<LayoutProps> = ({ children }) => {
+export const PageLayout: React.FC<LayoutProps> = ({
+  children,
+  menuItems,
+  backgroundColor,
+}) => {
+  const isDesktop = useMediaQuery(DESKTOP_LIMIT)
+  const background = backgroundColor ?? "#E89FC0"
+
   return (
     <>
       <PrismicTags />
       <FontTags />
       <GlobalStyle />
-      <LanguageSwitcher />
-      {children}
+      <Navigation {...menuItems} />
+      <Main isDesktop={isDesktop} backgroundColor={background}>
+        {children}
+      </Main>
     </>
   )
 }
@@ -56,3 +70,13 @@ const FontTags = memo(() => (
     ></link>
   </Helmet>
 ))
+
+const Main = styled.main`
+  background-color: ${(props: { backgroundColor: string }) =>
+    props.backgroundColor};
+
+  & > * {
+    ${(props: { isDesktop: boolean; backgroundColor: string }) =>
+      props.isDesktop ? `padding-left: 5rem` : `padding-top: 4rem;`}
+  }
+`
