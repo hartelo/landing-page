@@ -24,16 +24,11 @@ const Homepage: React.FC<{ data: Data }> = ({ data }) => {
         lang={data.prismic.allHomepages.edges[0].node._meta.lang}
         title={"Homepage"}
       />
-      <div
-        style={{
-          backgroundColor: color,
-          height: "100vh",
-        }}
-      >
+      <section className="section1">
         <p>Language is {lang}</p>
         <RichText render={name} />
         <RichText render={description} />
-      </div>
+      </section>
     </PageLayout>
   )
 }
