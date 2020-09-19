@@ -4,7 +4,7 @@ import React from "react"
 import SEO from "../components/common/SEO"
 import { PageLayout } from "../components/PageLayout"
 
-const Homepage: React.SFC<{ data: Data }> = ({ data }) => {
+const Homepage: React.FC<{ data: Data }> = ({ data }) => {
   const lang = data.prismic.allHomepages.edges[0].node._meta.lang
   const {
     color,

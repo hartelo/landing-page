@@ -9,10 +9,16 @@ import { DESKTOP_LIMIT } from "./responsive"
 export interface LayoutProps {
   children: React.ReactNode
   menuItems: NavigationProps
+  backgroundColor?: string
 }
 
-export const PageLayout: React.SFC<LayoutProps> = ({ children, menuItems }) => {
+export const PageLayout: React.FC<LayoutProps> = ({
+  children,
+  menuItems,
+  backgroundColor,
+}) => {
   const isDesktop = useMediaQuery(DESKTOP_LIMIT)
+  const background = backgroundColor ?? "#E89FC0"
 
   return (
     <>
@@ -20,7 +26,9 @@ export const PageLayout: React.SFC<LayoutProps> = ({ children, menuItems }) => {
       <FontTags />
       <GlobalStyle />
       <Navigation {...menuItems} />
-      <Main isDesktop={isDesktop}>{children}</Main>
+      <Main isDesktop={isDesktop} backgroundColor={background}>
+        {children}
+      </Main>
     </>
   )
 }
@@ -64,8 +72,11 @@ const FontTags = memo(() => (
 ))
 
 const Main = styled.main`
+  background-color: ${(props: { backgroundColor: string }) =>
+    props.backgroundColor};
+
   & > * {
-    ${(props: { isDesktop: boolean }) =>
+    ${(props: { isDesktop: boolean; backgroundColor: string }) =>
       props.isDesktop ? `padding-left: 5rem` : `padding-top: 4rem;`}
   }
 `
