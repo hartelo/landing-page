@@ -3,6 +3,7 @@ import { RichText } from "prismic-reactjs"
 import React from "react"
 import SEO from "../components/common/SEO"
 import { Hero } from "../components/homepage/Hero"
+import { PostHero } from "../components/homepage/PostHero"
 import { PageLayout } from "../components/PageLayout"
 
 const Homepage: React.FC<{ data: Data }> = ({ data }) => {
@@ -31,6 +32,7 @@ const Homepage: React.FC<{ data: Data }> = ({ data }) => {
         <RichText render={description} />
       </section> */}
       <Hero />
+      <PostHero />
     </PageLayout>
   )
 }

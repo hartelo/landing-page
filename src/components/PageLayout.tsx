@@ -75,6 +75,10 @@ const Main = styled.main`
   background-color: ${(props: { backgroundColor: string }) =>
     props.backgroundColor};
 
+  height: 100vh;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+
   & > * {
     ${(props: { isDesktop: boolean; backgroundColor: string }) =>
       props.isDesktop ? `padding-left: 5rem` : `padding-top: 0rem;`}

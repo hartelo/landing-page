@@ -1,7 +1,7 @@
-import { motion, Variants } from "framer-motion"
-import React from "react"
+import React, { useEffect } from "react"
 import styled from "styled-components"
 import LogoSVG from "../../assets/hero-logo.svg"
+import { Section } from "../common/Section"
 import { HeroHandOne } from "../images/HeroHandOne"
 import { HeroHandThree } from "../images/HeroHandThree"
 import { HeroHandTwo } from "../images/HeroHandTwo"
@@ -9,7 +9,7 @@ import { DESKTOP_LIMIT, TABLET_LIMIT } from "../responsive"
 
 export const Hero: React.FC = () => {
   return (
-    <Section>
+    <HeroSection>
       <Logo />
       <HeroHandOneWrapper>
         <HeroHandOne />
@@ -20,12 +20,11 @@ export const Hero: React.FC = () => {
       <HeroHandThreeWrapper>
         <HeroHandThree />
       </HeroHandThreeWrapper>
-    </Section>
+    </HeroSection>
   )
 }
 
-const Section = styled.section`
-  height: 100vh;
+const HeroSection = styled(Section)`
   position: relative;
   overflow: hidden;
 `
