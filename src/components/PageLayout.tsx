@@ -1,4 +1,4 @@
-import React, { memo } from "react"
+import React, { memo, useEffect, useState } from "react"
 import { Helmet } from "react-helmet"
 import { useMediaQuery } from "react-responsive"
 import styled from "styled-components"
