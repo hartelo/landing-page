@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from "react"
+import React, { memo } from "react"
 import { Helmet } from "react-helmet"
 import { useMediaQuery } from "react-responsive"
 import styled from "styled-components"
@@ -74,10 +74,6 @@ const FontTags = memo(() => (
 const Main = styled.main`
   background-color: ${(props: { backgroundColor: string }) =>
     props.backgroundColor};
-
-  height: 100vh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
 
   & > * {
     ${(props: { isDesktop: boolean; backgroundColor: string }) =>

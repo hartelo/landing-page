@@ -35,11 +35,11 @@ export const LanguageSwitcher: React.FC<{ isDesktop?: boolean }> = ({
           .filter(l => l !== currentLanguage)
           .map(lang => (
             <motion.div
+              key={lang}
               variants={listItemVariants(!!isDesktop)}
               initial={false}
             >
               <LanguageOption
-                key={lang}
                 onClick={() => reload(lang)}
                 animate={animateTextColor}
                 variants={languageColorVariants}
