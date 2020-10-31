@@ -1,9 +1,10 @@
 import { Variants } from "framer-motion"
 import React, { useEffect, useState } from "react"
+import { useStore } from "../../store/Store"
 import { MotionSection } from "../common/Section"
 import { BeansBackground } from "./BeansBackground"
 
-const PAGE_VIEW_TIME = 2000
+const PAGE_VIEW_TIME = 5000
 
 const variants: Variants = {
   pink: { backgroundColor: "#f2cdde", transition: { delay: 0.1 } },
@@ -29,15 +30,23 @@ const backgroundVariants: Variants = {
   },
 }
 
-const variantKeys = ["pink", "green", "white"]
+const variantKeys = ["pink", "green", "white"] as const
 
 export const PostHero: React.FC = () => {
   const [color, setColor] = useState(0)
+  const { dispatch } = useStore()
 
   useEffect(() => {
-    const lel = setInterval(() => setColor(c => (c + 1) % 3), PAGE_VIEW_TIME)
-    return () => clearInterval(lel)
+    const id = setInterval(() => setColor(c => (c + 1) % 3), PAGE_VIEW_TIME)
+    return () => clearInterval(id)
   }, [])
+
+  useEffect(() => {
+    dispatch({
+      type: "setBackgroundColor",
+      payload: { color: variantKeys[color] },
+    })
+  }, [color])
 
   return (
     <MotionSection

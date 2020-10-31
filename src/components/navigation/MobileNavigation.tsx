@@ -1,7 +1,7 @@
 import { motion, Variants } from "framer-motion"
 import React from "react"
 import styled from "styled-components"
-import IconSVG from "../../assets/icon.svg"
+import { Icon } from "../images/Icon"
 import { HamburgerMenu } from "./HamburgerMenu"
 import { LanguageSwitcher } from "./LanguageSwitcher"
 import { SocialMedia } from "./SocialMedia"
@@ -21,7 +21,9 @@ export const MobileNavigation: React.FC<MobileNavigationProps> = ({
     <NavigationContainer animate={isOpen ? "open" : "closed"}>
       <NavigationHalfContainer>
         <IconWrapper layoutId="icon">
-          <Icon />
+          <Icon
+            style={{ height: "75%", marginTop: "0.5rem", marginLeft: "1rem" }}
+          />
         </IconWrapper>
       </NavigationHalfContainer>
       <NavigationHalfContainer right>
@@ -134,11 +136,6 @@ const LanguageSwitcherContainer = styled.div`
 `
 const IconWrapper = styled(motion.div)`
   height: 100%;
-`
-const Icon = styled(IconSVG)`
-  margin-top: 0.5rem;
-  margin-left: 1rem;
-  height: 75%;
 `
 
 const MenuContainer = styled(motion.div)`

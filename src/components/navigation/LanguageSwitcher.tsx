@@ -3,6 +3,7 @@ import React, { useMemo, useState } from "react"
 import styled from "styled-components"
 import { languages, Languages } from "../../../prismic-config"
 import { useLangRedirect } from "../../hooks"
+import { useStore } from "../../store/Store"
 import { assertUnreachable } from "../../utils"
 
 const languageMap = (language: Languages): string => {
@@ -21,8 +22,11 @@ const languageMap = (language: Languages): string => {
 export const LanguageSwitcher: React.FC<{ isDesktop?: boolean }> = ({
   isDesktop,
 }) => {
+  const { state } = useStore()
   const [isOpen, setIsOpen] = useState<boolean | null>(null)
   const { reload, currentLanguage } = useLangRedirect()
+
+  const animateTextColor = state.backgroundColor === "white" ? "green" : "white"
 
   const languageOptions = useMemo(() => {
     return (
@@ -30,22 +34,30 @@ export const LanguageSwitcher: React.FC<{ isDesktop?: boolean }> = ({
         {languages
           .filter(l => l !== currentLanguage)
           .map(lang => (
-            <LanguageOption
-              key={lang}
+            <motion.div
               variants={listItemVariants(!!isDesktop)}
               initial={false}
-              onClick={() => reload(lang)}
             >
-              {languageMap(lang)}
-            </LanguageOption>
+              <LanguageOption
+                key={lang}
+                onClick={() => reload(lang)}
+                animate={animateTextColor}
+                variants={languageColorVariants}
+              >
+                {languageMap(lang)}
+              </LanguageOption>
+            </motion.div>
           ))}
       </>
     )
   }, [currentLanguage, reload])
 
   return (
-    <>
-      <CurrentLanguage onClick={() => setIsOpen(open => !open)}>
+    <motion.div animate={animateTextColor}>
+      <CurrentLanguage
+        variants={languageColorVariants}
+        onClick={() => setIsOpen(open => !open)}
+      >
         {languageMap(currentLanguage)}
       </CurrentLanguage>
       <LanguageOptionList
@@ -55,8 +67,17 @@ export const LanguageSwitcher: React.FC<{ isDesktop?: boolean }> = ({
       >
         {languageOptions}
       </LanguageOptionList>
-    </>
+    </motion.div>
   )
+}
+
+const languageColorVariants: Variants = {
+  white: {
+    color: "#ffffff",
+  },
+  green: {
+    color: "#52926c",
+  },
 }
 
 const listVariants: Variants = {
@@ -85,7 +106,7 @@ const listItemVariants = (isDesktop: boolean): Variants => ({
   },
 })
 
-const CurrentLanguage = styled.button`
+const CurrentLanguage = motion.custom(styled.button`
   background: none;
   border: none;
   padding: 0;
@@ -102,7 +123,7 @@ const CurrentLanguage = styled.button`
     outline: none;
     box-shadow: none;
   }
-`
+`)
 
 const LanguageOption = styled(motion.li)`
   padding: 0.35rem 0;

@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "framer-motion"
 import React, { useState } from "react"
 import styled from "styled-components"
-import IconSVG from "../../assets/icon.svg"
+import { Icon } from "../images/Icon"
 import { LanguageSwitcher } from "./LanguageSwitcher"
 import { SocialMedia } from "./SocialMedia"
 
@@ -14,7 +14,7 @@ export const DesktopNavigation: React.FC<DesktopNavigationProps> = ({
 }) => (
   <NavigationContainer>
     <NavigationHalfContainer>
-      <Icon />
+      <Icon style={{ marginTop: "0.5rem", width: "4rem" }} />
       <LanguageSwitcherContainer>
         <LanguageSwitcher isDesktop={true} />
       </LanguageSwitcherContainer>
@@ -85,11 +85,6 @@ const NavigationHalfContainer = styled.div`
 
   width: 100%;
   height: ${(props: { down?: boolean }) => (props.down ? "auto" : "100%")};
-`
-
-const Icon = styled(IconSVG)`
-  margin-top: 0.5rem;
-  width: 4rem;
 `
 
 const LanguageSwitcherContainer = styled.div`
