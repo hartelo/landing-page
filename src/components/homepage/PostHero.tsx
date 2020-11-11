@@ -1,4 +1,3 @@
-import { useScrollPosition } from "@n8tb1t/use-scroll-position"
 import { Variants } from "framer-motion"
 import React, { useEffect, useState } from "react"
 import { useStore } from "../../store/Store"
@@ -7,21 +6,31 @@ import { BeansBackground } from "../images/BeansBackground"
 
 const PAGE_VIEW_TIME = 5000
 
-export const PostHero: React.FC = () => {
+interface PostHeroProps {
+  isSelected: boolean
+}
+
+export const PostHero: React.FC<PostHeroProps> = ({ isSelected }) => {
   const [color, setColor] = useState(0)
   const { dispatch } = useStore()
 
   useEffect(() => {
-    const id = setInterval(() => setColor(c => (c + 1) % 3), PAGE_VIEW_TIME)
-    return () => clearInterval(id)
-  }, [])
+    if (isSelected) {
+      const id = setInterval(() => setColor(c => (c + 1) % 3), PAGE_VIEW_TIME)
+      return () => clearInterval(id)
+    }
+
+    return
+  }, [isSelected])
 
   useEffect(() => {
-    dispatch({
-      type: "setBackgroundColor",
-      payload: { color: variantKeys[color] },
-    })
-  }, [color])
+    if (isSelected) {
+      dispatch({
+        type: "setBackgroundColor",
+        payload: { color: variantKeys[color] },
+      })
+    }
+  }, [color, isSelected])
 
   return (
     <MotionSection

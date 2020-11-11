@@ -1,13 +1,26 @@
 import React from "react"
 import styled from "styled-components"
 import LogoSVG from "../../assets/hero-logo.svg"
+import { useStore } from "../../store/Store"
 import { Section } from "../common/Section"
 import { HeroHandOne } from "../images/HeroHandOne"
 import { HeroHandThree } from "../images/HeroHandThree"
 import { HeroHandTwo } from "../images/HeroHandTwo"
 import { DESKTOP_LIMIT, TABLET_LIMIT } from "../responsive"
 
-export const Hero: React.FC = () => {
+interface HeroProps {
+  isSelected: boolean
+}
+
+export const Hero: React.FC<HeroProps> = ({ isSelected }) => {
+  const { dispatch } = useStore()
+
+  React.useEffect(() => {
+    if (isSelected) {
+      dispatch({ type: "setBackgroundColor", payload: { color: "pink" } })
+    }
+  }, [isSelected])
+
   return (
     <HeroSection>
       <Logo />

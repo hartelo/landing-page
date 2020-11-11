@@ -1,6 +1,7 @@
-import { AnimatePresence, motion } from "framer-motion"
+import { AnimatePresence, motion, Variants } from "framer-motion"
 import React, { useState } from "react"
 import styled from "styled-components"
+import { useStore } from "../../store/Store"
 import { Icon } from "../images/Icon"
 import { LanguageSwitcher } from "./LanguageSwitcher"
 import { SocialMedia } from "./SocialMedia"
@@ -32,17 +33,24 @@ interface ProgressMenuProps {
 
 const ProgressMenu: React.FC<ProgressMenuProps> = ({ menuItems }) => {
   const itemToId = (item: string) => `D-${item}`
+  const { state } = useStore()
 
   const [selected, setSelected] = useState(itemToId(menuItems[0]))
   return (
     <ProgressMenuContainer>
       {menuItems.map(item => {
         const id = itemToId(item)
+        const isSelected = id === selected
+        const animate = !isSelected
+          ? state.backgroundColor
+          : state.backgroundColor !== "green"
+          ? "white"
+          : state.backgroundColor
         return (
           <MenuItemContainer key={id} onClick={() => setSelected(id)}>
             <AnimatePresence>
               {id === selected && (
-                <MenuItemSelection
+                <MenuItemSelectionContainer
                   initial={{ y: "-0.5rem" }}
                   animate={{
                     y: 0,
@@ -52,10 +60,21 @@ const ProgressMenu: React.FC<ProgressMenuProps> = ({ menuItems }) => {
                     y: "-0.5rem",
                     transition: { duration: 0.15 },
                   }}
-                />
+                >
+                  <MenuItemSelection
+                    animate={state.backgroundColor}
+                    variants={menuItemSelectionVariants}
+                  />
+                </MenuItemSelectionContainer>
               )}
             </AnimatePresence>
-            <MenuItem isSelected={id === selected}>{item}</MenuItem>
+            <MenuItem
+              animate={animate}
+              variants={menuItemVariants}
+              isSelected={isSelected}
+            >
+              {item}
+            </MenuItem>
           </MenuItemContainer>
         )
       })}
@@ -123,7 +142,33 @@ const MenuItemSelection = styled(motion.div)`
   width: 100%;
   height: 1rem;
   background-color: #52926c;
-  position: absolute;
-  top: -0.5rem;
   border-radius: 99rem;
 `
+
+const MenuItemSelectionContainer = styled(motion.div)`
+  width: 100%;
+  height: 1rem;
+  position: absolute;
+  top: -0.5rem;
+`
+
+const menuItemSelectionVariants: Variants = {
+  white: {
+    backgroundColor: "#52926c",
+  },
+  green: {
+    backgroundColor: "white",
+  },
+}
+
+const menuItemVariants: Variants = {
+  white: {
+    color: "#52926c",
+  },
+  green: {
+    color: "white",
+  },
+  pink: {
+    color: "white",
+  },
+}

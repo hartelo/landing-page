@@ -5,6 +5,7 @@ import SEO from "../components/common/SEO"
 import { Hero } from "../components/homepage/Hero"
 import { PostHero } from "../components/homepage/PostHero"
 import { PageLayout } from "../components/PageLayout"
+import { useStore } from "../store/Store"
 
 const Homepage: React.FC<{ data: Data }> = ({ data }) => {
   const lang = data.prismic.allHomepages.edges[0].node._meta.lang
@@ -20,6 +21,9 @@ const Homepage: React.FC<{ data: Data }> = ({ data }) => {
     contact_us: contactUs,
   } = data.prismic.allMenus.edges[0].node
   const menuItems = { home, hartelos, aboutUs, contactUs }
+
+  const { state } = useStore()
+
   return (
     <PageLayout menuItems={menuItems}>
       <SEO
@@ -31,8 +35,8 @@ const Homepage: React.FC<{ data: Data }> = ({ data }) => {
         <RichText render={name} />
         <RichText render={description} />
       </section> */}
-      <Hero />
-      <PostHero />
+      <Hero isSelected={state.pageIndex === 0} />
+      <PostHero isSelected={state.pageIndex === 1} />
     </PageLayout>
   )
 }

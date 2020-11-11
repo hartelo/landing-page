@@ -1,7 +1,9 @@
+import { useScrollPosition } from "@n8tb1t/use-scroll-position"
 import React, { memo } from "react"
 import { Helmet } from "react-helmet"
 import { useMediaQuery } from "react-responsive"
 import styled from "styled-components"
+import { useStore } from "../store/Store"
 import { GlobalStyle } from "./globalStyles"
 import { Navigation, NavigationProps } from "./navigation/Navigation"
 import { DESKTOP_LIMIT } from "./responsive"
@@ -19,6 +21,16 @@ export const PageLayout: React.FC<LayoutProps> = ({
 }) => {
   const isDesktop = useMediaQuery(DESKTOP_LIMIT)
   const background = backgroundColor ?? "#F2CDDE"
+  const { dispatch } = useStore()
+
+  useScrollPosition(({ currPos, prevPos }) => {
+    const prevIndex = Math.round(-prevPos.y / window.innerHeight)
+    const newIndex = Math.round(-currPos.y / window.innerHeight)
+
+    if (newIndex !== prevIndex) {
+      dispatch({ type: "setPageIndex", payload: { index: newIndex } })
+    }
+  })
 
   return (
     <>
