@@ -1,102 +1,62 @@
-import { motion, useAnimation, Variant } from "framer-motion"
-import React, { useEffect, useLayoutEffect, useState } from "react"
-import styled from "styled-components"
+import { useScrollPosition } from "@n8tb1t/use-scroll-position"
+import { Variants } from "framer-motion"
+import React, { useEffect, useState } from "react"
 import { useStore } from "../../store/Store"
 import { MotionSection } from "../common/Section"
-import { colors } from "../common/Styles"
 import { BeansBackground } from "../images/BeansBackground"
 
-const PAGE_VIEW_TIME = 4000
+const PAGE_VIEW_TIME = 5000
 
 export const PostHero: React.FC = () => {
-  const { dispatch } = useStore()
-  const controls = useAnimation()
   const [color, setColor] = useState(0)
+  const { dispatch } = useStore()
 
   useEffect(() => {
-    const id = setInterval(() => setColor(getNewColorIndex), PAGE_VIEW_TIME)
+    const id = setInterval(() => setColor(c => (c + 1) % 3), PAGE_VIEW_TIME)
     return () => clearInterval(id)
   }, [])
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     dispatch({
       type: "setBackgroundColor",
       payload: { color: variantKeys[color] },
     })
   }, [color])
 
-  React.useEffect(() => {
-    controls
-      .start({
-        x: "130vw",
-        transition: {
-          duration: 0.7,
-          type: "tween",
-          ease: "easeInOut",
-        },
-      })
-      .then(() =>
-        controls.set({
-          x: 0,
-          backgroundColor: colors[variantKeys[color]],
-        })
-      )
-      .catch()
-  }, [color])
-
   return (
     <MotionSection
-      style={{
-        position: "relative",
-        overflow: "hidden",
-        backgroundColor: colors[variantKeys[color]],
-      }}
+      variants={variants}
+      initial="pink"
+      animate={variantKeys[color]}
+      style={{ overflow: "hidden" }}
     >
-      <AnimatedBackground
-        style={{ backgroundColor: colors[variantKeys[color]] }}
-        animate={controls}
-      />
-      <BeansBackground
-        variants={backgroundVariants}
-        variantKeys={variantKeys}
-        color={color}
-      />
+      <BeansBackground variants={backgroundVariants} />
     </MotionSection>
   )
 }
 
-function getNewColorIndex(index: number) {
-  return (index + 1) % variantKeys.length
+const variantKeys = ["pink", "green", "white"] as const
+
+const variants: Variants = {
+  pink: { backgroundColor: "#f2cdde", transition: { delay: 0.1 } },
+  green: { backgroundColor: "#52926c", transition: { delay: 0.1 } },
+  white: { backgroundColor: "#ffffff", transition: { delay: 0.1 } },
 }
 
-const Background = styled.div`
-  position: absolute;
-  height: 100vh;
-  width: 130vw;
-  margin-left: -5rem;
-`
-const AnimatedBackground = motion.custom(Background)
-
-const backgroundVariants: PostHeroVariants = {
+const backgroundVariants: Variants = {
   pink: {
     scale: 1,
     opacity: 1,
-    transition: { type: "spring", mass: 0.8, delay: 0.2 },
+    transition: { ease: [0.23, 0.47, 0.42, 0.91], delay: 0.1 },
   },
   green: {
-    scale: 1.8,
+    scale: 1.5,
     opacity: 1,
-    transition: { type: "spring", mass: 0.8 },
+    transition: { ease: [0.51, 0.01, 0.55, 1] },
   },
   white: {
-    scale: 2.2,
+    scale: 0.8,
     opacity: 0,
-    transition: { type: "tween", duration: 0.5, delay: 0.1, ease: "easeOut" },
+    transition: { ease: [0.51, 0.01, 0.55, 1] },
   },
 }
-
-const variantKeys = ["pink", "green", "white"] as const
-
-export type BackgroundColorKeys = typeof variantKeys
-export type BackgroundColor = typeof variantKeys[number]
-export type PostHeroVariants = { [key in BackgroundColor]: Variant }
