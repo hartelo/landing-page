@@ -1,4 +1,9 @@
-import { defaultLanguage, langs, prismicRepo } from "./prismic-config"
+import {
+  defaultLanguage,
+  languages,
+  pages,
+  prismicRepo,
+} from "./prismic-config"
 
 export default {
   siteMetadata: {
@@ -11,7 +16,7 @@ export default {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
     {
-      resolve: "gatsby-plugin-web-font-loader",
+      resolve: `gatsby-plugin-web-font-loader`,
       options: {
         custom: {
           families: ["Shandon Slab, Rubik"],
@@ -41,22 +46,23 @@ export default {
       },
     },
     {
-      resolve: "gatsby-source-prismic-graphql",
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /assets/,
+        },
+      },
+    },
+    {
+      resolve: `gatsby-source-prismic-graphql`,
       options: {
         repositoryName: prismicRepo,
         defaultLang: defaultLanguage,
         path: "/preview",
         previews: true,
-        langs,
-        pages: [
-          {
-            type: "Homepage",
-            match: "/:lang?",
-            path: "/:lang?",
-            component: require.resolve("./src/templates/Homepage.tsx"),
-            langs,
-          },
-        ],
+        langs: languages,
+        pages,
+        omitPrismicScript: true,
       },
     },
     // this (optional) plugin enables Progressive Web App + Offline functionality
