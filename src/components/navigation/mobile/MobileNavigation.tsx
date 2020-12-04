@@ -1,10 +1,10 @@
 import { motion, Variants } from "framer-motion"
 import React from "react"
 import styled from "styled-components"
-import { Icon } from "../images/Icon"
+import { Icon } from "../../images/Icon"
+import { LanguageSwitcher } from "../LanguageSwitcher"
+import { SocialMedia } from "../SocialMedia"
 import { HamburgerMenu } from "./HamburgerMenu"
-import { LanguageSwitcher } from "./LanguageSwitcher"
-import { SocialMedia } from "./SocialMedia"
 
 export interface MobileNavigationProps {
   menuItems: string[]

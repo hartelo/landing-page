@@ -1,10 +1,10 @@
 import { AnimatePresence, motion, Variants } from "framer-motion"
 import React, { useState } from "react"
 import styled from "styled-components"
-import { useStore } from "../../store/Store"
-import { Icon } from "../images/Icon"
-import { LanguageSwitcher } from "./LanguageSwitcher"
-import { SocialMedia } from "./SocialMedia"
+import { useStore } from "../../../store/Store"
+import { Icon } from "../../images/Icon"
+import { LanguageSwitcher } from "../LanguageSwitcher"
+import { SocialMedia } from "../SocialMedia"
 
 export interface DesktopNavigationProps {
   menuItems: string[]

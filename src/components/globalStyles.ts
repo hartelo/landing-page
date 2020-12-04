@@ -23,3 +23,13 @@ export const GlobalStyle = createGlobalStyle`
     font-family: "Shandon Slab"
   }
 `
+
+export const colors = {
+  white: "#ffffff",
+  pink: "#f2cdde",
+  green: "#52926c",
+} as const
+
+export const backgroundColors = ["white", "pink", "green", "default"] as const
+export type BackgroundColor = typeof backgroundColors[number]
+export type BackgroundColorWithoutDefault = Exclude<BackgroundColor, "default">

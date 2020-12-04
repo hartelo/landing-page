@@ -1,6 +1,7 @@
-import { motion, MotionStyle, Variants } from "framer-motion"
+import { motion, MotionStyle, Variant, Variants } from "framer-motion"
 import React from "react"
 import { useStore } from "../../store/Store"
+import { BackgroundColor } from "../globalStyles"
 
 export interface IconProps {
   style?: MotionStyle
@@ -62,3 +63,5 @@ const letterColorVariants: Variants = {
     fill: "#ffffff",
   },
 }
+
+type BackgroundVariants = { [c in BackgroundColor]: Variant }

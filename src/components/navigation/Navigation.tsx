@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Desktop, TabletOrMobile } from "../responsive"
-import { DesktopNavigation } from "./DesktopNavigation"
-import { MobileNavigation } from "./MobileNavigation"
+import { DesktopNavigation } from "./desktop/DesktopNavigation"
+import { MobileNavigation } from "./mobile/MobileNavigation"
 
 export interface NavigationProps {
   home: string

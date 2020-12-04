@@ -1,7 +1,8 @@
-import { Variants } from "framer-motion"
+import { Variant } from "framer-motion"
 import React, { useEffect, useState } from "react"
 import { useStore } from "../../store/Store"
 import { MotionSection } from "../common/Section"
+import { BackgroundColorWithoutDefault, colors } from "../globalStyles"
 import { BeansBackground } from "../images/BeansBackground"
 
 const PAGE_VIEW_TIME = 5000
@@ -37,22 +38,26 @@ export const PostHero: React.FC<PostHeroProps> = ({ isSelected }) => {
       variants={variants}
       initial="pink"
       animate={variantKeys[color]}
-      style={{ overflow: "hidden" }}
+      style={{ overflow: "hidden", backgroundColor: "red" }}
     >
       <BeansBackground variants={backgroundVariants} />
     </MotionSection>
   )
 }
 
-const variantKeys = ["pink", "green", "white"] as const
+const variantKeys: readonly BackgroundColorWithoutDefault[] = [
+  "pink",
+  "green",
+  "white",
+]
 
-const variants: Variants = {
-  pink: { backgroundColor: "#f2cdde", transition: { delay: 0.1 } },
-  green: { backgroundColor: "#52926c", transition: { delay: 0.1 } },
-  white: { backgroundColor: "#ffffff", transition: { delay: 0.1 } },
+const variants: BackgroundColorVariants = {
+  pink: { backgroundColor: colors.pink, transition: { delay: 0.1 } },
+  green: { backgroundColor: colors.green, transition: { delay: 0.1 } },
+  white: { backgroundColor: colors.white, transition: { delay: 0.1 } },
 }
 
-const backgroundVariants: Variants = {
+const backgroundVariants: BackgroundColorVariants = {
   pink: {
     scale: 1,
     opacity: 1,
@@ -69,3 +74,5 @@ const backgroundVariants: Variants = {
     transition: { ease: [0.51, 0.01, 0.55, 1] },
   },
 }
+
+type BackgroundColorVariants = { [c in BackgroundColorWithoutDefault]: Variant }
