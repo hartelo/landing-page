@@ -1,4 +1,5 @@
-import React, { useState } from "react"
+import React from "react"
+import { useStore } from "../../store/Store"
 import { Desktop, TabletOrMobile } from "../responsive"
 import { DesktopNavigation } from "./desktop/DesktopNavigation"
 import { MobileNavigation } from "./mobile/MobileNavigation"
@@ -16,11 +17,10 @@ export const Navigation: React.FC<NavigationProps> = ({
   aboutUs,
   contactUs,
 }) => {
+  const { state, dispatch } = useStore()
   const menuItems = [home, hartelos, aboutUs, contactUs].map(
     replaceSpaceWithNonBreakingSpace
   )
-
-  const [isOpen, setIsOpen] = useState(false)
 
   return (
     <>
@@ -30,8 +30,13 @@ export const Navigation: React.FC<NavigationProps> = ({
       <TabletOrMobile>
         <MobileNavigation
           menuItems={menuItems}
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
+          isOpen={state.menuOpen}
+          setIsOpen={() =>
+            dispatch({
+              type: "setMenuOpen",
+              payload: { open: !state.menuOpen },
+            })
+          }
         />
       </TabletOrMobile>
     </>

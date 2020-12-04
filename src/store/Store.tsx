@@ -4,6 +4,7 @@ import { Action, reducer } from "./reducer"
 const initialState: State = {
   backgroundColor: "pink",
   pageIndex: 0,
+  menuOpen: false,
 }
 
 export const StoreContext = createContext<Store>({
@@ -26,6 +27,7 @@ export const useStore = () => useContext(StoreContext)
 export interface State {
   backgroundColor: "green" | "pink" | "white"
   pageIndex: number
+  menuOpen: boolean
 }
 
 export interface Store {

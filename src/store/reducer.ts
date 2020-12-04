@@ -6,12 +6,17 @@ export const reducer = (state: State, action: Action): State => {
       return { ...state, backgroundColor: action.payload.color }
     case "setPageIndex":
       return { ...state, pageIndex: action.payload.index }
+    case "setMenuOpen":
+      return { ...state, menuOpen: action.payload.open }
     default:
       return state
   }
 }
 
-export type Action = SetBackgroundColorAction | SetPageIndexAction
+export type Action =
+  | SetBackgroundColorAction
+  | SetPageIndexAction
+  | SetMenuOpenAction
 
 interface SetBackgroundColorAction {
   type: "setBackgroundColor"
@@ -24,5 +29,12 @@ interface SetPageIndexAction {
   type: "setPageIndex"
   payload: {
     index: number
+  }
+}
+
+interface SetMenuOpenAction {
+  type: "setMenuOpen"
+  payload: {
+    open: boolean
   }
 }

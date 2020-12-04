@@ -2,6 +2,7 @@ import { AnimatePresence, motion, Variants } from "framer-motion"
 import React, { useState } from "react"
 import styled from "styled-components"
 import { useStore } from "../../../store/Store"
+import { colors } from "../../globalStyles"
 import { Icon } from "../../images/Icon"
 import { LanguageSwitcher } from "../LanguageSwitcher"
 import { SocialMedia } from "../SocialMedia"
@@ -34,6 +35,8 @@ interface ProgressMenuProps {
 const ProgressMenu: React.FC<ProgressMenuProps> = ({ menuItems }) => {
   const itemToId = (item: string) => `D-${item}`
   const { state } = useStore()
+
+  console.log("state is", state)
 
   const [selected, setSelected] = useState(itemToId(menuItems[0]))
   return (
@@ -154,21 +157,24 @@ const MenuItemSelectionContainer = styled(motion.div)`
 
 const menuItemSelectionVariants: Variants = {
   white: {
-    backgroundColor: "#52926c",
+    backgroundColor: colors.green,
   },
   green: {
-    backgroundColor: "white",
+    backgroundColor: colors.white,
+  },
+  pink: {
+    backgroundColor: colors.green,
   },
 }
 
 const menuItemVariants: Variants = {
   white: {
-    color: "#52926c",
+    color: colors.green,
   },
   green: {
-    color: "white",
+    color: colors.white,
   },
   pink: {
-    color: "white",
+    color: colors.white,
   },
 }

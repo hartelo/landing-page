@@ -1,5 +1,5 @@
 import { Variant } from "framer-motion"
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { useStore } from "../../store/Store"
 import { MotionSection } from "../common/Section"
 import { BackgroundColorWithoutDefault, colors } from "../globalStyles"
@@ -13,11 +13,15 @@ interface PostHeroProps {
 
 export const PostHero: React.FC<PostHeroProps> = ({ isSelected }) => {
   const [color, setColor] = useState(0)
-  const { dispatch } = useStore()
+  const { state, dispatch } = useStore()
+  const animationPause = useRef(false)
 
   useEffect(() => {
     if (isSelected) {
-      const id = setInterval(() => setColor(c => (c + 1) % 3), PAGE_VIEW_TIME)
+      const id = setInterval(
+        () => !animationPause.current && setColor(c => (c + 1) % 3),
+        PAGE_VIEW_TIME
+      )
       return () => clearInterval(id)
     }
 
@@ -32,6 +36,10 @@ export const PostHero: React.FC<PostHeroProps> = ({ isSelected }) => {
       })
     }
   }, [color, isSelected])
+
+  useEffect(() => {
+    animationPause.current = state.menuOpen
+  }, [state.menuOpen])
 
   return (
     <MotionSection
