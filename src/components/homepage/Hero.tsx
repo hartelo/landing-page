@@ -6,7 +6,6 @@ import { Section } from "../common/Section"
 import { HeroHandOne } from "../images/HeroHandOne"
 import { HeroHandThree } from "../images/HeroHandThree"
 import { HeroHandTwo } from "../images/HeroHandTwo"
-import { DESKTOP_LIMIT, TABLET_LIMIT } from "../responsive"
 
 interface HeroProps {
   isSelected: boolean
@@ -48,13 +47,14 @@ const Logo = styled(LogoSVG)`
   padding-top: 8vh;
   width: 75vw;
 
-  @media only screen and (min-width: ${TABLET_LIMIT.minWidth}px) {
+  @media only screen and (min-width: ${props =>
+      props.theme.breakpoints.tablet}px) {
     padding-top: 5vh;
     width: 50vw;
   }
 
   @media only screen and (orientation: landscape),
-    screen and (min-width: ${DESKTOP_LIMIT.minWidth}px) {
+    screen and (min-width: ${props => props.theme.breakpoints.desktop}px) {
     width: 60vh;
     margin: 0 0 0 5vw;
     padding-top: 10vh;
@@ -67,7 +67,7 @@ const HeroHandOneWrapper = styled.div`
   left: -7vw;
 
   @media only screen and (orientation: landscape),
-    screen and (min-width: ${DESKTOP_LIMIT.minWidth}px) {
+    screen and (min-width: ${props => props.theme.breakpoints.desktop}px) {
     transform: rotate(-5deg);
     bottom: -14vh;
     left: 40vw;
@@ -80,7 +80,7 @@ const HeroHandTwoWrapper = styled.div`
   right: -7vw;
 
   @media only screen and (orientation: landscape),
-    screen and (min-width: ${DESKTOP_LIMIT.minWidth}px) {
+    screen and (min-width: ${props => props.theme.breakpoints.desktop}px) {
     bottom: 1vh;
     right: -7vh;
   }
@@ -92,7 +92,7 @@ const HeroHandThreeWrapper = styled.div`
   right: -7vw;
 
   @media only screen and (orientation: landscape),
-    screen and (min-width: ${DESKTOP_LIMIT.minWidth}px) {
+    screen and (min-width: ${props => props.theme.breakpoints.desktop}px) {
     bottom: 45vh;
     right: -7vh;
   }

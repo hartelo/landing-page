@@ -4,6 +4,13 @@ import {
   MediaQueryMatchers,
   useMediaQuery,
 } from "react-responsive"
+import {
+  DEFAULT_LIMIT,
+  DESKTOP_LIMIT,
+  MOBILE_LIMIT,
+  TABLET_LIMIT,
+  TABLET_OR_MOBILE_LIMIT,
+} from "../../theme"
 
 interface MediaQueryProps {
   settings?: Partial<
@@ -14,15 +21,6 @@ interface MediaQueryProps {
   device?: MediaQueryMatchers | undefined
   callback?: ((matches: boolean) => void) | undefined
 }
-
-export const DESKTOP_LIMIT = { minWidth: 1025 }
-export const TABLET_LIMIT = { minWidth: 768, maxWidth: 1024 }
-export const MOBILE_LIMIT = { maxWidth: 767, maxHeight: 815 }
-export const DEFAULT_LIMIT = { minWidth: 768 }
-
-/* Combined Media Queries */
-
-export const TABLET_OR_MOBILE_LIMIT = { maxWidth: 1024 }
 
 export const Desktop: React.FC<MediaQueryProps> = ({
   children,

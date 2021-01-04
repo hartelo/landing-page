@@ -6,7 +6,7 @@ import styled from "styled-components"
 import { useStore } from "../store/Store"
 import { GlobalStyle } from "./globalStyles"
 import { Navigation, NavigationProps } from "./navigation/Navigation"
-import { DESKTOP_LIMIT } from "./responsive"
+import { DESKTOP_LIMIT } from "../theme"
 
 export interface LayoutProps {
   children: React.ReactNode

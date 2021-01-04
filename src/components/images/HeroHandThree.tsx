@@ -2,7 +2,6 @@ import { graphql, useStaticQuery } from "gatsby"
 import Img from "gatsby-image"
 import React from "react"
 import styled from "styled-components"
-import { DESKTOP_LIMIT } from "../responsive"
 
 export const HeroHandThree = () => {
   const data = useStaticQuery(graphql`
@@ -24,7 +23,7 @@ const HeroHand = styled(Img)`
   width: 60vw;
 
   @media only screen and (orientation: landscape),
-    screen and (min-width: ${DESKTOP_LIMIT.minWidth}px) {
+    screen and (min-width: ${props => props.theme.breakpoints.desktop}px) {
     width: 60vh;
   }
 `

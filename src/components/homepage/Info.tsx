@@ -36,10 +36,23 @@ export const Info: React.FC<InfoProps> = ({ isSelected }) => {
 }
 
 const PaddedTitle = styled(Title)`
-  padding: 0 10rem 3rem 10rem;
+  padding-bottom: 3rem;
+  text-align: center;
+
+  @media only screen and (min-width: ${props =>
+      props.theme.breakpoints.tablet}px) {
+    padding: 0 10rem 3rem 10rem;
+    text-align: left;
+  }
 `
 
 const PaddedText = styled(Text)`
-  max-width: 40vw;
-  padding: 0 10rem;
+  padding: 0 3rem;
+
+  @media only screen and (min-width: ${props =>
+      props.theme.breakpoints.tablet}px) {
+    padding: 0 10rem 3rem 10rem;
+    max-width: 40vw;
+    text-align: left;
+  }
 `
