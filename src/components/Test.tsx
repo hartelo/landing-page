@@ -1,7 +1,7 @@
 import * as React from "react"
 import styled from "styled-components"
 import { MediumText, Text } from "./common/Text"
-import { SmallTitle, Title } from "./common/Title"
+import { SmallTitle, Title } from "./common/Typography"
 
 export interface TestProps {
   siteTitle?: string

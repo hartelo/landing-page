@@ -3,7 +3,9 @@ import { RichText } from "prismic-reactjs"
 import React from "react"
 import SEO from "../components/common/SEO"
 import { Hero } from "../components/homepage/Hero"
+import { Info } from "../components/homepage/Info"
 import { PostHero } from "../components/homepage/PostHero"
+import { Products } from "../components/homepage/Products"
 import { PageLayout } from "../components/PageLayout"
 import { useStore } from "../store/Store"
 
@@ -24,6 +26,8 @@ const Homepage: React.FC<{ data: Data }> = ({ data }) => {
 
   const { state } = useStore()
 
+  console.log("page index", state.pageIndex)
+
   return (
     <PageLayout menuItems={menuItems}>
       <SEO
@@ -37,6 +41,8 @@ const Homepage: React.FC<{ data: Data }> = ({ data }) => {
       </section> */}
       <Hero isSelected={state.pageIndex === 0} />
       <PostHero isSelected={state.pageIndex === 1} />
+      <Info isSelected={state.pageIndex === 2} />
+      <Products isSelected={state.pageIndex === 3} />
     </PageLayout>
   )
 }

@@ -28,6 +28,7 @@ export const colors = {
   white: "#ffffff",
   pink: "#f2cdde",
   green: "#52926c",
+  black: "#333333",
 } as const
 
 export const backgroundColors = ["white", "pink", "green", "default"] as const
