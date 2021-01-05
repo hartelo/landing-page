@@ -1,10 +1,5 @@
 import styled from "styled-components"
-import { colors } from "../globalStyles"
-
-const textAlign = (props: { center?: boolean }) =>
-  props.center ? "center" : "left"
-
-const color = (props: { color?: string }) => props.color ?? colors.black
+import { color, textAlign } from "../../utils"
 
 /*
  * ====================

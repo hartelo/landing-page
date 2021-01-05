@@ -1,10 +1,12 @@
 import React from "react"
-import { Section } from "../common/Section"
+import { Product } from "../product/Product"
 
 export const Products: React.FC = () => {
   return (
-    <Section>
-      <p>Hello</p>
-    </Section>
+    <>
+      {[0, 1, 2].map(i => (
+        <Product key={i} />
+      ))}
+    </>
   )
 }

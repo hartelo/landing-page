@@ -19,7 +19,7 @@ export const Info: React.FC<InfoProps> = ({ isSelected }) => {
   }, [isSelected])
 
   return (
-    <Section center={true}>
+    <Section verticalCenter={true}>
       <PaddedTitle color={colors.white}>Jäätelömme</PaddedTitle>
       <PaddedText color={colors.white}>
         Härtelön pohjaraaka-aineena käytetään suomalaista härkäpapua.
