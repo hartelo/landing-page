@@ -4,6 +4,7 @@ import { Section } from "../common/Section"
 import { Title, Text } from "../common/Typography"
 import { colors } from "../globalStyles"
 import styled from "styled-components"
+import { TABLET_LIMIT } from "../responsive"
 
 interface InfoProps {
   isSelected: boolean
@@ -39,8 +40,7 @@ const PaddedTitle = styled(Title)`
   padding-bottom: 3rem;
   text-align: center;
 
-  @media only screen and (min-width: ${props =>
-      props.theme.breakpoints.tablet}px) {
+  @media only screen and (min-width: ${TABLET_LIMIT.minWidth}px) {
     padding: 0 10rem 3rem 10rem;
     text-align: left;
   }
@@ -49,8 +49,7 @@ const PaddedTitle = styled(Title)`
 const PaddedText = styled(Text)`
   padding: 0 3rem;
 
-  @media only screen and (min-width: ${props =>
-      props.theme.breakpoints.tablet}px) {
+  @media only screen and (min-width: ${TABLET_LIMIT.minWidth}px) {
     padding: 0 10rem 3rem 10rem;
     max-width: 40vw;
     text-align: left;
